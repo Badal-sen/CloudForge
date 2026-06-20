@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: cloudforge-db
+    restart: always
+    environment:
+      POSTGRES_USER: cloudforge
+      POSTGRES_PASSWORD: cloudforge123
+      POSTGRES_DB: cloudforge
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: cloudforge-api
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+volumes:
+  postgres_data:
