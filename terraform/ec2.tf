@@ -9,7 +9,7 @@ resource "aws_instance" "cloudforge_server" {
     aws_security_group.cloudforge_sg.id
   ]
 
-  key_name = aws_key_pair.cloudforge_key.key_name
+  key_name = "cloudforge-key-v2"
 
   associate_public_ip_address = true
 
@@ -18,5 +18,6 @@ resource "aws_instance" "cloudforge_server" {
   tags = {
     Name        = "cloudforge-server"
     Environment = var.environment
+    Project     = var.project_name
   }
 }

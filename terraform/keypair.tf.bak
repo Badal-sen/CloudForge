@@ -1,0 +1,8 @@
+resource "aws_key_pair" "cloudforge-key-v2" {
+  key_name   = "cloudforge-key-v2"
+  public_key = file("../keys/cloudforge-key-v2.pub")
+
+  tags = {
+    Name = "cloudforge-key-v2"
+  }
+}
