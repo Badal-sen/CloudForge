@@ -29,5 +29,5 @@ app.include_router(deployments_router)
 @app.get("/", tags=["Home"])
 def home():
     return {
-        "message": "Welcome to CloudForge 🚀"
+        "message": "CloudForge CI/CD Working 🚀 Version 2"
     }
