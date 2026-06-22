@@ -1,4 +1,9 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+
+from datetime import datetime
+import platform
+import socket
 
 from app.database.database import Base, engine
 
@@ -16,18 +21,26 @@ from app.routers.deployments import router as deployments_router
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="CloudForge API",
-    version="1.0.0",
+    title="CloudForge DevOps Platform",
+    description="""
+Production-ready DevOps platform built with:
+
+- FastAPI
+- Docker
+- AWS EC2
+- PostgreSQL (Amazon RDS)
+- Application Load Balancer
+- GitHub Actions CI/CD
+- Cloudflare
+- HTTPS
+""",
+    version="2.0.0",
 )
 
 # Register Routers
 app.include_router(auth_router)
 app.include_router(projects_router)
 app.include_router(deployments_router)
-
-
-from datetime import datetime
-from fastapi.responses import HTMLResponse
 
 
 @app.get("/", response_class=HTMLResponse, tags=["Home"])
@@ -37,6 +50,7 @@ def home():
     <html>
     <head>
         <title>CloudForge</title>
+
         <style>
             body{
                 background:#0f172a;
@@ -45,6 +59,7 @@ def home():
                 text-align:center;
                 padding-top:70px;
             }
+
             .card{
                 width:700px;
                 margin:auto;
@@ -53,55 +68,64 @@ def home():
                 border-radius:15px;
                 box-shadow:0 0 25px rgba(0,0,0,.35);
             }
+
             h1{
                 color:#38bdf8;
             }
+
             p{
                 font-size:18px;
             }
+
             .status{
                 color:#22c55e;
                 font-weight:bold;
             }
+
             code{
                 color:#facc15;
             }
+
+            a{
+                color:#38bdf8;
+                text-decoration:none;
+            }
         </style>
+
     </head>
 
     <body>
 
-    <div class="card">
+        <div class="card">
 
-    <h1>☁️ CloudForge</h1>
+            <h1>☁️ CloudForge</h1>
 
-    <p>
-    AWS DevOps Automation Platform
-    </p>
+            <p>AWS DevOps Automation Platform</p>
 
-    <hr>
+            <hr>
 
-    <p>Status:
-    <span class="status">● ONLINE</span>
-    </p>
+            <p>
+                Status:
+                <span class="status">● ONLINE</span>
+            </p>
 
-    <p>Version 2.0</p>
+            <p><strong>Version:</strong> 2.0.0</p>
 
-    <p>FastAPI • Docker • AWS EC2 • ALB • Cloudflare • GitHub Actions</p>
+            <p>
+                FastAPI • Docker • AWS EC2 • ALB • Cloudflare • GitHub Actions
+            </p>
 
-    <br>
+            <br>
 
-    <p>
-    Health →
-    <code>/health</code>
-    </p>
+            <p>Health → <code>/health</code></p>
 
-    <p>
-    API Docs →
-    <code>/docs</code>
-    </p>
+            <p>Version → <code>/version</code></p>
 
-    </div>
+            <p>Info → <code>/info</code></p>
+
+            <p>Swagger → <a href="/docs">/docs</a></p>
+
+        </div>
 
     </body>
     </html>
@@ -113,7 +137,7 @@ def health():
     return {
         "status": "healthy",
         "application": "CloudForge",
-        "version": "2.0"
+        "version": "2.0.0"
     }
 
 
@@ -124,38 +148,6 @@ def version():
         "environment": "Production"
     }
 
-
-@app.get("/info", tags=["System"])
-def info():
-    return {
-        "project": "CloudForge",
-        "domain": "https://badalbk.dev",
-        "cloud": "AWS",
-        "runtime": "Docker",
-        "framework": "FastAPI",
-        "deployed_at": datetime.utcnow().isoformat() + "Z"
-    }
-
-
-@app.get("/health", tags=["System"])
-def health():
-    return {
-        "status": "healthy",
-        "application": "CloudForge",
-        "version": "2.0"
-    }
-
-@app.get("/version", tags=["System"])
-def version():
-    return {
-        "version": "2.0.0",
-        "environment": "Production"
-    }
-
-
-from datetime import datetime
-import platform
-import socket
 
 @app.get("/info", tags=["System"])
 def info():
@@ -169,5 +161,3 @@ def info():
         "python": platform.python_version(),
         "timestamp": datetime.utcnow().isoformat() + "Z"
     }
-
-
