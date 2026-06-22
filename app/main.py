@@ -137,4 +137,37 @@ def info():
     }
 
 
-    
+@app.get("/health", tags=["System"])
+def health():
+    return {
+        "status": "healthy",
+        "application": "CloudForge",
+        "version": "2.0"
+    }
+
+@app.get("/version", tags=["System"])
+def version():
+    return {
+        "version": "2.0.0",
+        "environment": "Production"
+    }
+
+
+from datetime import datetime
+import platform
+import socket
+
+@app.get("/info", tags=["System"])
+def info():
+    return {
+        "project": "CloudForge",
+        "domain": "https://badalbk.dev",
+        "framework": "FastAPI",
+        "cloud": "AWS",
+        "runtime": "Docker",
+        "hostname": socket.gethostname(),
+        "python": platform.python_version(),
+        "timestamp": datetime.utcnow().isoformat() + "Z"
+    }
+
+
