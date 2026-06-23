@@ -23,21 +23,16 @@ https://badalbk.dev/docs
 
 ## 📸 Screenshots
 
-### Homepage
+![Homepage](screenshots/homepage.png)
 
-![Homepage](screenshots/01-homepage.png)
+![Swagger](screenshots/swagger-api.png)
 
-### API Documentation
+![GitHub Actions](screenshots/github-actions.png)
 
-![Swagger](screenshots/02-swagger-api.png)
-
-### CI/CD Pipeline
-
-![GitHub Actions](screenshots/11-github-actions.png)
 
 ## Features
 
-* JWT Authentication
+* JWT Authenticationgit 
 * User Registration & Login
 * Project Management API
 * Deployment Management API
