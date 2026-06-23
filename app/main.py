@@ -17,7 +17,7 @@ from app.routers.auth import router as auth_router
 from app.routers.projects import router as projects_router
 from app.routers.deployments import router as deployments_router
 
-# Create all database tables
+# Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -49,7 +49,7 @@ def home():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>CloudForge</title>
+        <title>CloudForge DevOps Platform</title>
 
         <style>
             body{
@@ -57,11 +57,12 @@ def home():
                 color:white;
                 font-family:Arial,sans-serif;
                 text-align:center;
-                padding-top:70px;
+                padding:60px;
+                margin:0;
             }
 
             .card{
-                width:700px;
+                max-width:850px;
                 margin:auto;
                 background:#1e293b;
                 padding:40px;
@@ -71,10 +72,23 @@ def home():
 
             h1{
                 color:#38bdf8;
+                margin-bottom:10px;
+            }
+
+            h3{
+                color:#38bdf8;
+                margin-top:35px;
             }
 
             p{
                 font-size:18px;
+                line-height:1.6;
+            }
+
+            hr{
+                border:none;
+                border-top:1px solid #334155;
+                margin:25px 0;
             }
 
             .status{
@@ -84,14 +98,20 @@ def home():
 
             code{
                 color:#facc15;
+                background:#0f172a;
+                padding:2px 6px;
+                border-radius:4px;
             }
 
             a{
                 color:#38bdf8;
                 text-decoration:none;
             }
-        </style>
 
+            .tech{
+                color:#cbd5e1;
+            }
+        </style>
     </head>
 
     <body>
@@ -111,11 +131,38 @@ def home():
 
             <p><strong>Version:</strong> 2.0.0</p>
 
-            <p>
-                FastAPI • Docker • AWS EC2 • ALB • Cloudflare • GitHub Actions
+            <p class="tech">
+                FastAPI • Docker • PostgreSQL • AWS EC2 • ALB • Cloudflare • GitHub Actions
             </p>
 
-            <br>
+            <h3>Features</h3>
+
+            <p>✅ JWT Authentication</p>
+            <p>✅ Project Management API</p>
+            <p>✅ Deployment Management API</p>
+            <p>✅ PostgreSQL Database</p>
+            <p>✅ Docker Container</p>
+            <p>✅ GitHub Actions CI/CD</p>
+            <p>✅ HTTPS with Cloudflare</p>
+            <p>✅ AWS EC2 + Application Load Balancer</p>
+
+            <h3>Architecture</h3>
+
+            <p>
+                Client
+                <br>↓
+                <br>Cloudflare
+                <br>↓
+                <br>Application Load Balancer
+                <br>↓
+                <br>EC2 (Docker + FastAPI)
+                <br>↓
+                <br>Amazon RDS PostgreSQL
+            </p>
+
+            <hr>
+
+            <h3>API Endpoints</h3>
 
             <p>Health → <code>/health</code></p>
 
@@ -123,7 +170,7 @@ def home():
 
             <p>Info → <code>/info</code></p>
 
-            <p>Swagger → <a href="/docs">/docs</a></p>
+            <p>Swagger Docs → <a href="/docs">/docs</a></p>
 
         </div>
 
