@@ -21,6 +21,20 @@ https://badalbk.dev/docs
   <img src="docs/architecture.png" alt="CloudForge Architecture" width="900">
 </p>
 
+## 📸 Screenshots
+
+### Homepage
+
+![Homepage](screenshots/01-homepage.png)
+
+### API Documentation
+
+![Swagger](screenshots/02-swagger-api.png)
+
+### CI/CD Pipeline
+
+![GitHub Actions](screenshots/11-github-actions.png)
+
 ## Features
 
 * JWT Authentication
