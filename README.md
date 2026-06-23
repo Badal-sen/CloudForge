@@ -15,6 +15,11 @@ https://badalbk.dev
 https://badalbk.dev/docs
 
 ---
+## 🏗️ Architecture
+
+<p align="center">
+  <img src="docs/architecture.png" alt="CloudForge Architecture" width="900">
+</p>
 
 ## Features
 
